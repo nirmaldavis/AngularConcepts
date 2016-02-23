@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Angular Concepts</title>
+</head>
+
+<body>
+    <div ng-app="" ng-init=" quantity=0; cost=1">
+        <h2>Invoice:</h2>
+        <table>
+            <tr>
+                <td><span>Quantity : </span></td>
+                <td><input type="number" ng-model="quantity"> </td>
+            </tr>
+            <tr>
+                <td>Costs : </td>
+                <td>
+                    <input type="number" ng-model="cost">
+                </td>
+                <td>
+                    <select name="" id=""></select>
+                </td>
+            </tr>
+            <tr>
+                <td><b>Total : </b></td>
+                <td>$ {{quantity * cost}}</td>
+            </tr>
+        </table>
+
+    </div>
+    <script src="/node_modules/angular/angular.js"></script>
+</body>
+
+</html>
