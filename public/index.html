@@ -7,30 +7,72 @@
 </head>
 
 <body>
-    <div ng-app="" ng-init=" quantity=0; cost=1">
-        <h2>Invoice:</h2>
-        <table>
-            <tr>
-                <td><span>Quantity : </span></td>
-                <td><input type="number" ng-model="quantity"> </td>
-            </tr>
-            <tr>
-                <td>Costs : </td>
-                <td>
-                    <input type="number" ng-model="cost">
-                </td>
-                <td>
-                    <select name="" id=""></select>
-                </td>
-            </tr>
-            <tr>
-                <td><b>Total : </b></td>
-                <td>$ {{quantity * cost}}</td>
-            </tr>
-        </table>
+
+  
+    <div ng-app="invoice1">
+
+        <div ng-controller="InvoiceController">
+
+            <h2>Invoice:</h2>
+            <table>
+                <tr>
+                    <td><span>Quantity : </span></td>
+                    <td>
+                        <input type="number" ng-model="quantity" required> </td>
+                </tr>
+                <tr>
+                    <td>Costs : </td>
+                    <td>
+                        <input type="number" ng-model="cost">
+                    </td>
+                    <td>
+                        <select name="" id="">
+                            <option value="1">USD</option>
+                            <option value="2">EUR</option>
+                            <option value="2">CNY</option>
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <td><b>Total : </b></td>
+                    <td>$ {{quantity * cost}}</td>
+                   <td>
+                       <button ng-click="test()" >Test</button>
+                   </td>
+                </tr>
+            </table>
+
+        </div>
+
 
     </div>
+    
+   
+<!--
+   <div ng-app="invoice1" ng-controller="InvoiceController as invoice">
+  <b>Invoice:</b>
+  <div>
+    Quantity: <input type="number" min="0" ng-model="invoice.qty" required >
+  </div>
+  <div>
+    Costs: <input type="number" min="0" ng-model="invoice.cost" required >
+    <select ng-model="invoice.inCurr">
+      <option ng-repeat="c in invoice.currencies">{{c}}</option>
+    </select>
+  </div>
+  <div>
+    <b>Total:</b>
+    <span ng-repeat="c in invoice.currencies">
+      {{invoice.total(c) | currency:c}}
+    </span>
+    <button class="btn" ng-click="invoice.pay()">Pay</button>
+  </div>
+</div>
+-->
+
     <script src="/node_modules/angular/angular.js"></script>
+    <script src="/src/app.js"></script>
+    
 </body>
 
 </html>

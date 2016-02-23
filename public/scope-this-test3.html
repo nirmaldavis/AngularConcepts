@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   
+<!--   Refer AngularJS: "Controller as" or "$scope"? @ http://codetunnel.io/angularjs-controller-as-or-scope/-->
+   
+    <meta charset="UTF-8">
+    <title>Scope This..!!</title>
+</head>
+<body ng-app="myApp">
+   
+   <h2>Change the value in the parent input and see the child input update.</h2>
+
+    <h2>Then change the value in the child input and notice that the parent <i>does</i> update.</h2>
+   
+    <div ng-controller="ParentController as parent" >
+        <p/>
+       Parent Controller : <input type="text" ng-model="parent.foo" />
+        
+        <p/>
+        <div ng-controller="ChildController as child">
+            Child Controller  (with parent model): <input type="text" ng-model="parent.foo" />
+            <p/>
+            Child Controller  (with child model): <input type="text" ng-model="child.foo" />
+            <p/>
+            <button ng-click="child.test()">Test Child</button>
+        </div>
+    </div>
+</body>
+
+<script src="/node_modules/angular/angular.js"></script>
+<script>
+    angular.module("myApp",[])
+        .controller("ParentController", function(){
+        
+            this.foo = "bar";
+        
+//            $scope.obj = {
+//                            foo : "bar"
+//                         };
+        
+        })
+        .controller("ChildController", function($scope){
+            //Empty 
+        
+            this.test = function() {
+                console.log("In Test..!!");   
+                console.log("this.foo : " + this.foo);
+            }
+        });
+</script>
+</html>

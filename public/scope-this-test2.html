@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   
+<!--   Refer AngularJS: "Controller as" or "$scope"? @ http://codetunnel.io/angularjs-controller-as-or-scope/-->
+   
+    <meta charset="UTF-8">
+    <title>Scope This..!!</title>
+</head>
+<body ng-app="myApp">
+   
+   <h2>Change the value in the parent input and see the child input update.</h2>
+
+    <h2>Then change the value in the child input and notice that the parent <i>does</i> update.</h2>
+   
+    <div ng-controller="ParentController" >
+        <p/>
+       Parent Controller : <input type="text" ng-model="obj.foo" />
+        
+        <p/>
+        <div ng-controller="ChildController">
+            Child Controller : <input type="text" ng-model="obj.foo" />
+        </div>
+    </div>
+</body>
+
+<script src="/node_modules/angular/angular.js"></script>
+<script>
+    angular.module("myApp",[])
+        .controller("ParentController", function($scope){
+            $scope.obj = {
+                            foo : "bar"
+                         };
+        })
+        .controller("ChildController", function($scope){
+            //Empty 
+        });
+</script>
+</html>
+
+
+
+
+<!-- 
+
+undefined
+obj1.holder.x = "Nirmal";
+VM1079:2 Uncaught TypeError: Cannot set property 'x' of undefined(…)(anonymous function) @ VM1079:2InjectedScript._evaluateOn @ VM614:875InjectedScript._evaluateAndWrap @ VM614:808InjectedScript.evaluate @ VM614:664
+obj1.holder = {};
+Object {}
+obj1.holder.x = "Nirmal";
+"Nirmal"
+obj1.holder.x 
+"Nirmal"
+obj2.holder.x 
+"Nirmal"
+obj2.holder.x = "Davis";
+"Davis"
+obj2.holder.x 
+"Davis"
+obj1.holder.x 
+"Davis"
+
+-->
