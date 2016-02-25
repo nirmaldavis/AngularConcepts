@@ -11,34 +11,37 @@
   
     <div ng-app="invoice1">
 
-        <div ng-controller="InvoiceController">
+        <div ng-controller="InvoiceController as invoice">
 
             <h2>Invoice:</h2>
             <table>
                 <tr>
                     <td><span>Quantity : </span></td>
                     <td>
-                        <input type="number" ng-model="quantity" required> </td>
+                        <input type="number" ng-model="invoice.quantity" required> </td>
                 </tr>
                 <tr>
                     <td>Costs : </td>
                     <td>
-                        <input type="number" ng-model="cost">
+                        <input type="number" ng-model="invoice.cost">
                     </td>
                     <td>
-                        <select name="" id="">
-                            <option value="1">USD</option>
-                            <option value="2">EUR</option>
-                            <option value="2">CNY</option>
+                        <select ng-model="invoice.fromCurr">
+                            <option ng-repeat="currency in invoice.currencies" >{{currency}}</option>
                         </select>
                     </td>
                 </tr>
                 <tr>
                     <td><b>Total : </b></td>
-                    <td>$ {{quantity * cost}}</td>
-                   <td>
-                       <button ng-click="test()" >Test</button>
-                   </td>
+                    <td colspan="2">
+                        
+                        
+                        <span ng-repeat="c in invoice.currencies">
+                             {{ invoice.total(c) | currency:c }}
+                        </span>
+                    </td>
+                    
+<!--                    <td>$ {{invoice.total()}}</td>-->
                 </tr>
             </table>
 

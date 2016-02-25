@@ -1,17 +1,23 @@
 var invoiceAppModule = angular.module('invoice1',[]);
 
-invoiceAppModule.controller('InvoiceController', function($scope) {
-    $scope.quantity = 2;
-    $scope.cost = 24;
-   
+invoiceAppModule.controller('InvoiceController', function() {
+    this.quantity = 2;
+    this.cost = 24;
+    this.fromCurr = "EUR";
+    this.currencies = ["USD" , "EUR" , "CNY" ];
     
-    $scope.currencies = ["USD" , "EUR" , "CNY"];
+    this.usdToForiegnRates = {  USD : 1,
+                                EUR : 0.74,
+                                CNY : 6.09
+                             };
     
-    console.log(typeof $scope.quantity);
-    console.log($scope.quantity);
+    this.convertCurrency = function(amount, fromCurr, toCurr) {
+        
+         return amount * this.usdToForiegnRates[toCurr] / this.usdToForiegnRates[fromCurr];
+    };
     
-    $scope.test = function() {
-        console.log("Test");
+    this.total = function(toCurr) {
+        return this.convertCurrency(this.quantity * this.cost, this.fromCurr, toCurr);
     };
                 
 });    
