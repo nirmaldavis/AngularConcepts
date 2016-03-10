@@ -1,10 +1,11 @@
-var invoiceAppModule = angular.module('invoice1', ['finance']);
+var financeModule = angular.module('finance',[]);
 
-/*
+console.log("financeModule module : " + financeModule);
+
 //Reusable business logic of converting currency 
 //It moved out of controller and made it as a factory
-invoiceAppModule.factory('currencyConvertor', function(){
-    
+financeModule.factory("currencyConvertor", function() {
+
     var currencies = ["USD", "EUR", "CNY"];
     var usdToForiegnRates = { USD: 1,
                               EUR: 0.74,
@@ -18,19 +19,5 @@ invoiceAppModule.factory('currencyConvertor', function(){
         currencies : currencies,
         convertCurrency : convert
     };
-});
-*/
-
-
-invoiceAppModule.controller('InvoiceController',  function (currencyConvertor) {
-    this.quantity = 2;
-    this.cost = 24;
-    this.fromCurr = "EUR";
     
-    this.currencies = currencyConvertor.currencies;
-
-    this.total = function (toCurr) {
-        return currencyConvertor.convertCurrency(this.quantity * this.cost, this.fromCurr, toCurr);
-    };
-
-}  );
+});
